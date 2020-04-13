@@ -2,13 +2,32 @@ type User {
   id: ID!
   name: String!
   email: String!
+  cars: [Car!]
+}
+
+type Car {
+  id: ID!
+  model: String!
+  brand: String!
+  year: Int!
+  mileage: Int!
+  owner: User
 }
 
 type Query {
   users: [User!]!
   user(id: ID!): User
+
+  cars: [Car!]!
+  car(id: ID!): Car
 }
 
 type Mutation {
   createUser(name: String!, email: String!): User
+  updateUser(id: ID! name: String!, email: String!): User
+  deleteUser(id: ID!): User
+
+  createCar(owner: String, model: String!, brand: String!, year: Int!, mileage: Int!): Car
+  updateCar(id: ID! owner: String, model: String!, brand: String!, year: Int!, mileage: Int!): Car
+  deleteCar(id: ID!): Car
 }
